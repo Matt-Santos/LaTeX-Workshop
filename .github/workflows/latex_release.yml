@@ -65,7 +65,7 @@ jobs:
                 find . -type f -iname "*.pdf" | while read fname; do
                     dirname=`dirname $fname`
                     filename=`basename $fname`
-                    gpg --clearsign --not-dash-escaped "${dirname}/$filename"
+                    echo {{ secrets.PASSPHRASE }} | gpg --clearsign --passphrase-fd 0 --not-dash-escaped "${dirname}/$filename"
                 done
           - name: Create Latest Release (always)
             uses: softprops/action-gh-release@v2.0.9
