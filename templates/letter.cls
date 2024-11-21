@@ -20,7 +20,7 @@
 \RequirePackage{graphicx}
 
 % Varriables
-\input{../templates/varriables}
+\input{../templates/varriables.var}
 
 % PDF Configuration (Generic Entries)
 \hypersetup{
