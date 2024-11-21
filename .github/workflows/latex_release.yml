@@ -43,6 +43,8 @@ jobs:
             run: |
                 gpg -d -o templates/signature.tar templates/signature.tar.gpg
                 tar -xvf templates/signature.tar
+                ls -la
+                pwd
           - name: Compile Latex documents
             uses: xu-cheng/latex-action@v3
             with:
