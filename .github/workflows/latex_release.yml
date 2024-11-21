@@ -41,7 +41,7 @@ jobs:
                 OWNER: ${{ github.repository_owner }}
           - name: Decrypt Signature Image
             run: |
-                gpg -d templates/signature.tar.gpg
+                gpg -d -o templates/signature.tar templates/signature.tar.gpg
                 tar -xvf templates/signature.tar
           - name: Compile Latex documents
             uses: xu-cheng/latex-action@v3
