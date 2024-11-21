@@ -1,7 +1,52 @@
-%& -job-name=Matthew_Santos_Projects
-\documentclass{article}
+%%& -job-name=Matthew_Santos_Projects
+% Matthew Santos
+% List of Public Projects on Github
+% Last Updated Nov 2024
+% (Compile with pdfLatex)
+%------------------------
+
+\documentclass{../templates/resume}
+\usepackage{jsonparse}
+\usepackage{pgffor}
+\usepackage{fontawesome}
+\usepackage{markdown}
+
+\JSONParseFromFile[externalize]{\RepoData}{repoList.json}
+
 \begin{document}
+	\header%\vfill
+	
+	% Metadata (Job Specific Keywords)
+	\hypersetup{
+		pdftitle={Matthew Santos Projects},
+		pdfsubject={Projects},
+		pdfkeywords={Electrical Engineer}
+	}
+	
+	\section{Electronics}
+	\section{Section}
+	
+	\markdownInput{Matt-Santos/Matt-Santos.github.io/README.md}
+	
+	%\JSONParseExpandableValue
 
-Project List
-
+	%\section{\JSONParseValue{\RepoData}{[0].name}}
+	
+	%\JSONParseArrayCount{\RepoData}{}
+	
+	\foreach \x [count=\xi from 0] in {1,...,8}{
+		%\if\JSONParseExpandableValue{\RepoData}{[0].repositoryTopics[0].name}\testa
+			\resumeEntry{
+			\href{https://github.com/Matt-Santos/\JSONParseExpandableValue{\RepoData}{[\xi].name}}
+			{\faGithub~\JSONParseValue{\RepoData}{[\xi].name}}}
+			{\JSONParseValue{\RepoData}{[\xi].description}}
+			{\JSONParseValue{\RepoData}{[\xi].primaryLanguage.name}}
+			{\JSONParseValue{\RepoData}{[\xi].createdAt} - \JSONParseValue{\RepoData}{[\xi].updatedAt}}{}
+			{\item README}
+			%\markdownInput{../Matt-Santos/Matt-Santos.github.io/README.md}
+		%\fi
+	}
+	% Readmes are in Matt-Santos/reponame/README.md
+	
 \end{document}
+

@@ -11,6 +11,10 @@
 *.cb
 *.cb2
 .*.lb
+*.pdf
+## Extras
+*.json
+signature.png
 
 ## Intermediate documents:
 *.dvi

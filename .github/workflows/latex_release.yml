@@ -1,0 +1,81 @@
+name: Compile LaTeX Documents  
+
+on: [push]
+
+permissions:
+    contents: write
+    
+jobs:
+    latex_release:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v4
+          - name: Import GPG Key
+            uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5
+            with:
+                gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+                passphrase: ${{ secrets.PASSPHRASE }}
+                trust_level: 5
+          - name: Get Project List
+            run: |
+                gh repo list -L 200 --json \
+                name,description,createdAt,updatedAt,\
+                forkCount,stargazerCount,watchers,languages,\
+                primaryLanguage,repositoryTopics,isArchived,\
+                isFork,isPrivate,isTemplate \
+                $OWNER > projects/repoList.json
+            env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                OWNER: ${{ github.repository_owner }}
+          - name: Get Project Readmes
+            run: |
+                gh repo list -L 200 $OWNER > repos
+                mkdir projects/$OWNER
+                awk '{print $1}' repos | while read line ; do \
+                mkdir $line ; \
+                curl -o projects/$line/README.md https://raw.githubusercontent.com/$line/refs/heads/main/README.md ; \
+                done
+            env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                OWNER: ${{ github.repository_owner }}
+          - name: Decrypt Signature Image
+            run: |
+                gpg -d templates/signature.tar.gpg
+                tar -xvf templates/signature.tar
+          - name: Compile Latex documents
+            uses: xu-cheng/latex-action@v3
+            with:
+                root_file: '**/*.tex'
+                work_in_root_file_dir: true
+                continue_on_error: true
+                latexmk_shell_escape: true
+          - name: Rename PDFs According to JobName
+            run: |
+                find . -type f -iname "*.pdf" | while read fname; do
+                    dirname=`dirname $fname`
+                    filename=`basename $fname`
+                    texname=`echo $filename | sed 's/pdf/tex/'`
+                    newname=`head -n 1 $dirname/$texname`
+                    newname="${newname##*=}.pdf"
+                    mv "${dirname}/$filename" "${dirname}/${newname}"
+                done
+          - name: Digitally Sign PDF Documents
+            run: |
+                find . -type f -iname "*.pdf" | while read fname; do
+                    gpg --clearsign --not-dash-escaped "${dirname}/$filename"
+                done
+          - name: Create Latest Release (always)
+            uses: softprops/action-gh-release@v2.0.9
+            with:
+                files: "**/*.pdf"
+                name: Latest
+                tag_name: latest
+                make_latest: true
+          - name: Create Tagged Release (if push is tagged)
+            if: startsWith(github.ref, 'refs/tags/')
+            uses: softprops/action-gh-release@v2.0.9
+            with:
+                files: "**/*.pdf"
+                generate_release_notes: true
+                make_latest: true
