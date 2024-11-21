@@ -72,7 +72,7 @@
 \newcommand{\Signature}[1]{%
 	\raggedright{#1},\\
 	\vspace{4pt}
-	\hspace*{-0.4cm}\includegraphics[width=4.5cm]{../templates/Signature/Signature.png}\\
+	\hspace*{-0.4cm}\includegraphics[width=4.5cm]{../templates/signature.png}\\
 	%\vspace{2pt}
     Matthew Santos
 }
