@@ -65,19 +65,27 @@ jobs:
                 find . -type f -iname "*.pdf" | while read fname; do
                     dirname=`dirname $fname`
                     filename=`basename $fname`
-                    echo {{ secrets.PASSPHRASE }} | gpg --clearsign --passphrase-fd 0 --not-dash-escaped "${dirname}/$filename"
+                    gpg --pinentry-mode loopback --passphrase ${{ secrets.PASSPHRASE }} --clearsign --not-dash-escaped "${dirname}/$filename"
+                    mv "${dirname}/$filename".asc "${dirname}/$filename"
+                    gpg --pinentry-mode loopback --passphrase ${{ secrets.PASSPHRASE }} --detach-sig "${dirname}/$filename"
                 done
           - name: Create Latest Release (always)
             uses: softprops/action-gh-release@v2.0.9
             with:
-                files: "**/*.pdf"
+                files: |
+                    **/*.pdf
+                    **/*.sig
                 name: Latest
                 tag_name: latest
                 make_latest: true
+                body: Personal Documents Compiled via LaTeX
           - name: Create Tagged Release (if push is tagged)
             if: startsWith(github.ref, 'refs/tags/')
             uses: softprops/action-gh-release@v2.0.9
             with:
-                files: "**/*.pdf"
+                files: |
+                    **/*.pdf
+                    **/*.sig
                 generate_release_notes: true
                 make_latest: true
+                body: Personal Documents Compiled via LaTeX
