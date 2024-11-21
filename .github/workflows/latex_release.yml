@@ -42,9 +42,7 @@ jobs:
           - name: Decrypt Signature Image
             run: |
                 gpg -d -o templates/signature.tar templates/signature.tar.gpg
-                tar -xvf templates/signature.tar
-                ls -la
-                pwd
+                tar -xvf templates/signature.tar --directory templates
           - name: Compile Latex documents
             uses: xu-cheng/latex-action@v3
             with:
@@ -65,6 +63,8 @@ jobs:
           - name: Digitally Sign PDF Documents
             run: |
                 find . -type f -iname "*.pdf" | while read fname; do
+                    dirname=`dirname $fname`
+                    filename=`basename $fname`
                     gpg --clearsign --not-dash-escaped "${dirname}/$filename"
                 done
           - name: Create Latest Release (always)
