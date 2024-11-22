@@ -17,6 +17,7 @@
 \RequirePackage{fontawesome}
 \RequirePackage{times}
 \RequirePackage[country=US]{phonenumbers}
+\RequirePackage{iftex}
 %\RequirePackage{showframe}	 % Boundary Check
 
 % Varriables
@@ -39,15 +40,16 @@
 }
 
 % Unicode Fixes (ensures machine readable)
+\ifpdftex
 \input{glyphtounicode}
 \pdfgentounicode=1
-\urlstyle{same}
+\fi
 
 % Universal Formating
 \setlength{\tabcolsep}{0in} % Eliminate indentation
 \pagenumbering{gobble} % Eliminate pagenumbers
 \raggedright
-
+\urlstyle{same}
 
 % Define Personal Header
 \newcommand{\header}{

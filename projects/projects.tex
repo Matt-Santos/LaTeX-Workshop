@@ -1,4 +1,4 @@
-%& -job-name=Matthew_Santos_Projects
+%%& -job-name=Matthew_Santos_Projects
 % Matthew Santos
 % List of Public Projects on Github
 % Last Updated Nov 2024
@@ -10,6 +10,24 @@
 \usepackage{pgffor}
 \usepackage{fontawesome}
 \usepackage{markdown}
+\markdownSetup{
+	gfmAutoIdentifiers,
+	hybrid,
+	linkAttributes,
+	hashEnumerators,
+	smartEllipses,
+	unicodeNormalization,
+	contentBlocks,
+	renderers = {
+		headingOne = {{\LARGE{#1}}},
+		headingTwo = {{\Large{#1}}},
+		headingThree = {{\large{#1}}},
+		headingFour = {{\large{#1}}},
+		link     = {#1},        % Render a link as the link label.
+		emphasis = {\bfseries{#1}}, % Render emphasis using `\emph`.
+		codeSpan = {{\tt #1}}, 
+	}
+}
 
 %\JSONParseFromFile[externalize]{\RepoData}{repoList.json}
 
@@ -27,7 +45,7 @@
 	\section{Section}
 	
 	%\markdownInput{Matt-Santos/Matt-Santos.github.io/README.md}
-	
+	%\markdownInput{Matt-Santos/Matt-Santos/README.md}
 	%\JSONParseExpandableValue
 
 	%\section{\JSONParseValue{\RepoData}{[0].name}}
@@ -45,6 +63,7 @@
 	%		{\item README}
 			%\markdownInput{../Matt-Santos/Matt-Santos.github.io/README.md}
 		%\fi
+		
 	%}
 	% Readmes are in Matt-Santos/reponame/README.md
 	

@@ -39,16 +39,17 @@
 }
 
 % Unicode Fixes (ensures machine readable)
+\ifpdftex
 \input{glyphtounicode}
 \pdfgentounicode=1
-\urlstyle{same}
+\fi
 
 % Universal Formating
 \setlength{\tabcolsep}{0in} % Eliminate indentation
 \pagenumbering{gobble} % Eliminate pagenumbers
 \raggedright
+\urlstyle{same}
 \setlength{\parskip}{\baselineskip} % Paragraph Spacing
-
 
 % Define Personal Header
 \newcommand{\header}{

@@ -50,6 +50,7 @@ jobs:
                 work_in_root_file_dir: true
                 continue_on_error: true
                 latexmk_shell_escape: true
+                latexmk_use_lualatex: true
           - name: Rename PDFs According to JobName
             run: |
                 find . -type f -iname "*.pdf" | while read fname; do
@@ -69,12 +70,17 @@ jobs:
                     mv "${dirname}/$filename".asc "${dirname}/$filename"
                     gpg --pinentry-mode loopback --passphrase ${{ secrets.PASSPHRASE }} --detach-sig "${dirname}/$filename"
                 done
+          - name: Delete Previous Release
+            run: gh release delete latest --cleanup-tag
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           - name: Create Latest Release (always)
             uses: softprops/action-gh-release@v2.0.9
             with:
                 files: |
                     **/*.pdf
                     **/*.sig
+                    projects/repoList.json
                 name: Latest
                 tag_name: latest
                 make_latest: true
