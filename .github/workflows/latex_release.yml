@@ -80,7 +80,6 @@ jobs:
                 files: |
                     **/*.pdf
                     **/*.sig
-                    projects/repoList.json
                 name: Latest
                 tag_name: latest
                 make_latest: true
