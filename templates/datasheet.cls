@@ -1,5 +1,4 @@
 % Custom Datasheet Style
-% Custom Letter Class
 % Written by Matthew Santos (Inspired by Analog Devices)
 %---------------------------
 
@@ -8,30 +7,34 @@
 \ProvidesClass{datasheet}[2024/11/27 Datasheet LaTeX class]
 
 % Packages
-\LoadClass[11pt]{article} % [10pt,12pt]
-\RequirePackage[includeheadfoot,letterpaper,margin=0.7in,top=0.5in]{geometry} % Canada/USA
-\RequirePackage[english]{babel} % Language Typography
-\RequirePackage[hidelinks]{hyperref}
-\RequirePackage[raggedright]{titlesec}
-\RequirePackage{fancyhdr}
-\RequirePackage{enumitem}
-\RequirePackage{xcolor}
-\RequirePackage{fontawesome}
-\RequirePackage{graphicx}
-\RequirePackage{fontspec}
-\RequirePackage{multicol}
-\RequirePackage[smartEllipses]{markdown}
-\RequirePackage{lastpage}
+\LoadClass[11pt,twocolumn]{article} % [10pt,12pt]
+\usepackage[includeheadfoot,letterpaper,margin=0.7in,top=0.5in]{geometry}
+\usepackage[english]{babel} % Language Typography
+\usepackage[hidelinks]{hyperref}
+\usepackage[raggedright]{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fontawesome}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage{multicol}
+\usepackage[smartEllipses]{markdown}
+\usepackage{lastpage}
 
-% Set Font (Arial Narrow)
-\defaultfontfeatures[ARIALN]{
-	UprightFont=*,
-	BoldFont=*B,
-	ItalicFont=*I,
-	BoldItalicFont=*BI,
-	Extension=.ttf }
-\setmainfont{ARIALN}
-\setsansfont{ARIALN}
+% Markdown Options
+\markdownSetup{
+	taskLists = true,
+	definitionLists = true,
+	smartEllipses,
+	hashEnumerators,
+	renderers={
+		link = {\href{#3}{#1}}
+	}
+}
+
+% Assign Font
+\renewcommand{\familydefault}{\sfdefault}
 
 % Define Header and Footer
 \pagestyle{fancy}
@@ -52,9 +55,10 @@
 	\fancyfoot[C]{}
 	\fancyfoot[R]{\thepage~of~\pageref{LastPage}}
 }
-\AtBeginDocument{\thispagestyle{firstpage}\vspace*{\baselineskip}} % Use the first page headers/footers style on the first page
-\pagestyle{subsequentpages} % Use the subsequent pages headers/footers style on subsequent pages
+\AtBeginDocument{\thispagestyle{firstpage}\vspace*{\baselineskip}}
+\pagestyle{subsequentpages}
 
 % Section Header Formats
 \titleformat{\section}{\Large\color{blue}}{}{0em}{}
 \titleformat{\subsection}{\normalfont\scshape}{}{1em}{}
+

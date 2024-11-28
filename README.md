@@ -13,6 +13,6 @@ LaTeX is a powerful typesetting system that is used for producing professional t
 My resume and associated documents are also typeset with LaTeX. For more information on my work, please visit my [personal webpage](https://Matt-Santos.github.io) or browse through my public [repositories](https://github.com/Matt-Santos?tab=repositories).
 
 PDF files can be accessed using the links below:
-- [**Resume**](https://docs.google.com/viewer?url=https://github.com/Matt-Santos/Resume/releases/latest/download/Matthew_Santos_Resume.pdf)
-- [**CV - Full**](https://docs.google.com/viewer?url=https://github.com/Matt-Santos/Resume/releases/latest/download/Matthew_Santos_CV.pdf)
-- [**Project List**](https://docs.google.com/viewer?url=https://github.com/Matt-Santos/Resume/releases/latest/download/Matthew_Santos_Projects.pdf)
+- [**Resume**](https://docs.google.com/viewer?url=https://github.com/Matt-Santos/LaTeX-Workshop/releases/latest/download/Matthew_Santos_Resume.pdf)
+- [**CV - Full**](https://docs.google.com/viewer?url=https://github.com/Matt-Santos/LaTeX-Workshop/releases/latest/download/Matthew_Santos_CV.pdf)
+- [**Project List**](https://docs.google.com/viewer?url=https://github.com/Matt-Santos/LaTeX-Workshop/releases/latest/download/Matthew_Santos_Projects.pdf)

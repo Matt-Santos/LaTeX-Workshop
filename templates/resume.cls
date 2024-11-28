@@ -8,17 +8,17 @@
 
 % Packages
 \LoadClass[10pt]{article} % [10pt,12pt]
-\RequirePackage[letterpaper,margin=0.5in]{geometry} % Canada/USA
-%\RequirePackage[a4paper,margin=0.5in]{geometry} % Europe/International
-\RequirePackage[english]{babel} % Language Typography
-\RequirePackage[hidelinks]{hyperref}
-\RequirePackage[compact,raggedright]{titlesec}
-\RequirePackage{enumitem}
-\RequirePackage{fontawesome}
-\RequirePackage{times}
-\RequirePackage[country=US]{phonenumbers}
-\RequirePackage{iftex}
-%\RequirePackage{showframe}	 % Boundary Check
+\usepackage[letterpaper,margin=0.5in]{geometry} % Canada/USA
+%\usepackage[a4paper,margin=0.5in]{geometry} % Europe/International
+\usepackage[english]{babel} % Language Typography
+\usepackage[hidelinks]{hyperref}
+\usepackage[compact,raggedright]{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome}
+\usepackage{times}
+\usepackage[country=US]{phonenumbers}
+\usepackage{iftex}
+%\usepackage{showframe}	 % Boundary Check
 
 % Varriables
 \input{../templates/varriables.var}

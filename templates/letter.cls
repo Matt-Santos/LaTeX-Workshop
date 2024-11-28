@@ -8,16 +8,16 @@
 
 % Packages
 \LoadClass[12pt]{article} % [10pt,12pt]
-\RequirePackage[letterpaper,margin=1in]{geometry} % Canada/USA
-%\RequirePackage[a4paper,margin=1in]{geometry} % Europe/International
-\RequirePackage[english]{babel} % Language Typography
-\RequirePackage[hidelinks]{hyperref}
-\RequirePackage[raggedright]{titlesec}
-\RequirePackage{enumitem}
-\RequirePackage{fontawesome}
-\RequirePackage{times}
-\RequirePackage[country=US]{phonenumbers}
-\RequirePackage{graphicx}
+\usepackage[letterpaper,margin=1in]{geometry} % Canada/USA
+%\usepackage[a4paper,margin=1in]{geometry} % Europe/International
+\usepackage[english]{babel} % Language Typography
+\usepackage[hidelinks]{hyperref}
+\usepackage[raggedright]{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome}
+\usepackage{times}
+\usepackage[country=US]{phonenumbers}
+\usepackage{graphicx}
 
 % Varriables
 \input{../templates/varriables.var}
