@@ -1,0 +1,67 @@
+%& -job-name=Matthew_Santos_Projects
+% Matthew Santos
+% List of Public Projects on Github
+% Last Updated Nov 2024
+% (Compile with pdfLatex)
+%------------------------
+
+\documentclass{../templates/resume}
+\usepackage{jsonparse}
+\usepackage{pgffor}
+\usepackage{fontawesome}
+\usepackage{xstring}
+\usepackage{markdown}
+\markdownSetup{
+	gfmAutoIdentifiers,
+	linkAttributes,
+	hashEnumerators,
+	smartEllipses,
+	unicodeNormalization,
+	contentBlocks,
+	renderers = {
+		headingOne = {{\large{#1}}},
+		headingTwo = {{\large{#1}}},
+		headingThree = {{\large{#1}}},
+		headingFour = {{\large{#1}}},
+		link = {\href{#3}{#1}},
+		emphasis = {\bfseries{#1}},
+		codeSpan = {{\tt #1}}, 
+	}
+}
+\JSONParseFromFile[externalize]{\RepoData}{repoList.json}
+
+\newcommand{\printRepos}[1]{
+	\section{\uppercase{#1}}
+	\foreach \x [count=\xi from 0] in {1,...,99}{
+		\IfEq*{\JSONParseExpandableValue{\RepoData}{[\xi].repositoryTopics[0].name}}{#1}{
+			\resumeEntry{
+				\href{https://github.com/Matt-Santos/\JSONParseExpandableValue{\RepoData}{[\xi].name}}
+				{\faGithub~\JSONParseValue{\RepoData}{[\xi].name}}}
+				{\JSONParseValue{\RepoData}{[\xi].description}}
+				{\JSONParseValue{\RepoData}{[\xi].primaryLanguage.name}}
+				{\StrLeft{\JSONParseExpandableValue{\RepoData}{[\xi].createdAt}}{10} - \StrLeft{\JSONParseExpandableValue{\RepoData}{[\xi].updatedAt}}{10}}{}
+				{}
+			\markdownInput{Matt-Santos/\JSONParseExpandableValue{\RepoData}{[\xi].name}/README.md}
+		}{} % false case
+	}
+}
+
+
+
+\begin{document}
+	\header%\vfill
+	
+	% Metadata (Job Specific Keywords)
+	\hypersetup{
+		pdftitle={Matthew Santos Projects},
+		pdfsubject={Projects},
+		pdfkeywords={Electrical Engineer}
+	}
+
+	\printRepos{programming}
+	\printRepos{research}
+	\printRepos{electronics}
+	\printRepos{restoration}
+	
+\end{document}
+
