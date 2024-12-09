@@ -63,6 +63,9 @@ jobs:
                     mv "${dirname}/$filename" "${dirname}/${newname}"
                 done
           - name: Digitally Sign PDF Documents
+            env:
+                secret_passphrase: ${{ secrets.PASSPHRASE }}
+            if: ${{ env.secret_passphrase != '' }}
             run: |
                 find . -type f -iname "*.pdf" | while read fname; do
                     dirname=`dirname $fname`
