@@ -1,6 +1,6 @@
 name: Compile LaTeX Documents  
 
-on: [push]
+on: [push, workflow_dispatch]
 
 permissions:
     contents: write
@@ -58,9 +58,13 @@ jobs:
                     dirname=`dirname $fname`
                     filename=`basename $fname`
                     texname=`echo $filename | sed 's/pdf/tex/'`
-                    newname=`head -n 1 $dirname/$texname`
-                    newname="${newname##*=}.pdf"
-                    mv "${dirname}/$filename" "${dirname}/${newname}"
+                    if [ -f '$dirname/$texname' ]; then
+                        newname=`head -n 1 $dirname/$texname`
+                        newname="${newname##*=}.pdf"
+                        if [ $newname != '.pdf' ]; then
+                            mv "${dirname}/$filename" "${dirname}/${newname}"
+                        fi
+                    fi
                 done
           - name: Digitally Sign PDF Documents
             env:
@@ -76,6 +80,7 @@ jobs:
                 done
           - name: Delete Previous Release
             run: gh release delete latest --cleanup-tag
+            continue-on-error: true
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           - name: Create Latest Release (always)
@@ -84,7 +89,7 @@ jobs:
                 files: |
                     **/*.pdf
                     **/*.sig
-                name: Latest
+                name: latest
                 tag_name: latest
                 make_latest: true
                 body: Personal Documents Compiled via LaTeX
