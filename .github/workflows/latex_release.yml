@@ -10,13 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - name: Checkout Repository
-            uses: actions/checkout@v4
-          - name: Import GPG Key
-            uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5
-            with:
-                gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-                passphrase: ${{ secrets.PASSPHRASE }}
-                trust_level: 5
+            uses: actions/checkout@v4.2.2
           - name: Get Project List
             run: |
                 mkdir -p projects
@@ -40,6 +34,19 @@ jobs:
             env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 OWNER: ${{ github.repository_owner }}
+          - name: Upload Project Dependancies Artifact
+            uses: actions/upload-artifact@v4.4.3
+            with:
+                name: Project_Dependancies
+                path: |
+                    projects
+                overwrite: true
+          - name: Import GPG Key
+            uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5
+            with:
+                gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+                passphrase: ${{ secrets.PASSPHRASE }}
+                trust_level: 5
           - name: Decrypt Signature Image
             run: |
                 gpg -d -o templates/signature.tar templates/signature.tar.gpg
@@ -84,7 +91,7 @@ jobs:
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           - name: Create Latest Release (always)
-            uses: softprops/action-gh-release@v2.0.9
+            uses: softprops/action-gh-release@v2.1.0
             with:
                 files: |
                     **/*.pdf
