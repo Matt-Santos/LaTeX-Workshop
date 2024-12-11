@@ -1,4 +1,4 @@
-%%& -job-name=Matthew_Santos_Projects
+%& -job-name=Matthew_Santos_Projects
 % Matthew Santos
 % List of Public Projects on Github
 % Last Updated Nov 2024
@@ -31,17 +31,17 @@
 \JSONParseFromFile[externalize]{\RepoData}{repoList.json}
 
 \newcommand{\printRepos}[1]{
-	\section{\uppercase{#1}}
+	\section{\uppercase{#1}}\vspace{0.5\baselineskip}
 	\foreach \x [count=\xi from 0] in {1,...,99}{
 		\IfEq*{\JSONParseExpandableValue{\RepoData}{[\xi].repositoryTopics[0].name}}{#1}{
-			\resumeEntry{
+			\resumeEntry{\large
 				\href{https://github.com/Matt-Santos/\JSONParseExpandableValue{\RepoData}{[\xi].name}}
 				{\faGithub~\JSONParseValue{\RepoData}{[\xi].name}}}
 				{\JSONParseValue{\RepoData}{[\xi].description}}
 				{\JSONParseValue{\RepoData}{[\xi].primaryLanguage.name}}
 				{\StrLeft{\JSONParseExpandableValue{\RepoData}{[\xi].createdAt}}{10} - \StrLeft{\JSONParseExpandableValue{\RepoData}{[\xi].updatedAt}}{10}}{}
 				{}
-			\markdownInput{Matt-Santos/\JSONParseExpandableValue{\RepoData}{[\xi].name}/README.md}
+			\markdownInput{Matt-Santos/\JSONParseExpandableValue{\RepoData}{[\xi].name}/README.md}\vspace{0.5\baselineskip}
 		}{} % false case
 	}
 }
@@ -58,10 +58,9 @@
 		pdfkeywords={Electrical Engineer}
 	}
 
-	\printRepos{programming}
 	\printRepos{research}
 	\printRepos{electronics}
-	\printRepos{restoration}
+	\printRepos{programming}
 	
 \end{document}
 
