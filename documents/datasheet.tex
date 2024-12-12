@@ -9,43 +9,31 @@
 
 \section{GENERAL DESCRIPTION}
 
-\markdownInput{README.md} % Description and Feature List
+\markdownInput{README.md} % Long Form Project Description
 
-\section{APPLICATIONS}
+\section{APPLICATIONS} % List of Applications
 
-%\begin{itemize}
-%	\item Automotive
-%	\item Industrial
-%\end{itemize}
-Test
+\begin{itemize}
+	\item Automotive...
+	\item Industrial...
+	\item Medical...
+\end{itemize}
+
+\IfFileExists{block_diagram.jpg}{
 \section{FUNCTIONAL BLOCK DIAGRAM}
-\includegraphics[width=0.45\linewidth,draft]{block_diagram.jpg}
-
-% Product Highlights
+	\includegraphics[width=0.85\linewidth]{block_diagram.jpg}
+	
+	% Functional Description (inner operations)
+}{}
 
 \pagebreak
+%--------------------------
+
 \tableofcontents
 % Revision History
 % Author Contact Details
 \pagebreak
 
-%\markdownInput{quick-start.md} % Description and Feature List
-%\markdownInput{docs.md} % Description and Feature List
-
-
-\section{Pin Configuration}
-
-\section{Specifications}
-\subsection{Electrical Characteristics}
-\subsection{Peripherals}
-
-
-
-
-\section{Detailed Description}
-
-\section{Application Example}
-
-\section{Mechanical Drawings}
+\markdownInput{docs.md}
 
 \end{document}

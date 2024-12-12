@@ -1,0 +1,17 @@
+%& -job-name=Bibliographies
+% Print all Bibliographies
+% Last Updated Dec 2024
+% (Compile with lualatex)
+%------------------------
+
+\documentclass{article}
+\usepackage{biblatex}
+\addbibresource{publications.bib}
+\addbibresource{Books.bib}
+
+\begin{document}
+
+\nocite{*}
+\printbibliography
+
+\end{document}

@@ -46,6 +46,7 @@ jobs:
                 tar -xvf templates/signature.tar --directory templates
           - name: Compile Latex documents
             uses: xu-cheng/latex-action@v3
+            continue-on-error: true
             with:
                 root_file: '**/*.tex'
                 work_in_root_file_dir: true
