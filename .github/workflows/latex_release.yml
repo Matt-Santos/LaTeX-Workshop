@@ -48,7 +48,11 @@ jobs:
             uses: xu-cheng/latex-action@v3
             continue-on-error: true
             with:
-                root_file: '**/*.tex'
+                root_file: |
+                    'projects/projects.tex'
+                    'letters/cover_letter.tex'
+                    'resume/cv.tex'
+                    'resume/resume.tex'
                 work_in_root_file_dir: true
                 continue_on_error: true
                 latexmk_shell_escape: true
