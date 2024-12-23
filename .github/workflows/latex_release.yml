@@ -46,15 +46,13 @@ jobs:
                 tar -xvf templates/signature.tar --directory templates
           - name: Compile Latex documents
             uses: xu-cheng/latex-action@v3
-            continue-on-error: true
             with:
                 root_file: |
-                    'projects/projects.tex'
-                    'letters/cover_letter.tex'
-                    'resume/cv.tex'
-                    'resume/resume.tex'
+                    **/projects.tex
+                    **/cover_letter.tex
+                    **/cv.tex
+                    **/resume.tex
                 work_in_root_file_dir: true
-                continue_on_error: true
                 latexmk_shell_escape: true
                 latexmk_use_lualatex: true
           - name: Rename PDFs According to JobName
