@@ -48,10 +48,9 @@ jobs:
             uses: xu-cheng/latex-action@v3
             with:
                 root_file: |
-                    **/projects.tex
-                    **/cover_letter.tex
-                    **/cv.tex
-                    **/resume.tex
+                    projects/projects.tex
+                    resume/cv.tex
+                    resume/resume.tex
                 work_in_root_file_dir: true
                 latexmk_shell_escape: true
                 latexmk_use_lualatex: true
