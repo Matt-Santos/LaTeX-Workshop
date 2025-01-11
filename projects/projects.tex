@@ -41,7 +41,7 @@
 				{\JSONParseValue{\RepoData}{[\xi].primaryLanguage.name}}
 				{\StrLeft{\JSONParseExpandableValue{\RepoData}{[\xi].createdAt}}{10} - \StrLeft{\JSONParseExpandableValue{\RepoData}{[\xi].updatedAt}}{10}}{}
 				{}
-			\markdownInput{Matt-Santos/\JSONParseExpandableValue{\RepoData}{[\xi].name}/README.md}\vspace{0.5\baselineskip}
+			\markdownInput{\JSONParseExpandableValue{\RepoData}{[\xi].name}/documents/README.md}\vspace{0.5\baselineskip}
 		}{} % false case
 	}
 }
@@ -61,6 +61,7 @@
 	\printRepos{research}
 	\printRepos{electronics}
 	\printRepos{programming}
+	\printRepos{misc}
 	
 \end{document}
 

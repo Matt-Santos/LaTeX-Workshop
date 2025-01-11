@@ -21,18 +21,27 @@ jobs:
                 isFork,isPrivate,isTemplate \
                 $OWNER > projects/repoList.json
             env:
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_TOKEN: ${{ secrets.WEBSITEPAT }} # Limited PAT
                 OWNER: ${{ github.repository_owner }}
+          - name: Extract Project Names (repoList)
+            uses: mikefarah/yq@v4.44.3
+            with:
+                cmd: yq e -r '.[].name' projects/repoList.json > projects/repoList
           - name: Get Project Readmes
             run: |
-                gh repo list -L 200 $OWNER > repos
-                mkdir projects/$OWNER
-                awk '{print $1}' repos | while read line ; do \
-                mkdir -p projects/$line ; \
-                curl -o projects/$line/README.md https://raw.githubusercontent.com/$line/refs/heads/main/documents/README.md ; \
+                shopt -s extglob
+                cd projects
+                cat repoList | while read line; do
+                    git clone --depth 1 https://$GH_TOKEN@github.com/$OWNER/$line.git
+                    cd $line
+                    git sparse-checkout init --cone
+                    git sparse-checkout set documents
+                    find . -type f ! -path './documents/README.md' -exec rm -f '{}' +
+                    find . -type d ! -path './documents' ! -path '.' -exec rm -rf '{}' +
+                    cd ..
                 done
             env:
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_TOKEN: ${{ secrets.WEBSITEPAT }}
                 OWNER: ${{ github.repository_owner }}
           - name: Import GPG Key
             uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5
@@ -48,7 +57,6 @@ jobs:
             uses: xu-cheng/latex-action@v3
             with:
                 root_file: |
-                    projects/projects.tex
                     resume/cv.tex
                     resume/resume.tex
                 work_in_root_file_dir: true
