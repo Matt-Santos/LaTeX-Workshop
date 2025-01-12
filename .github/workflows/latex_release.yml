@@ -59,6 +59,7 @@ jobs:
                 root_file: |
                     resume/cv.tex
                     resume/resume.tex
+                # projects/projects.tex
                 work_in_root_file_dir: true
                 latexmk_shell_escape: true
                 latexmk_use_lualatex: true
@@ -68,7 +69,7 @@ jobs:
                     dirname=`dirname $fname`
                     filename=`basename $fname`
                     texname=`echo $filename | sed 's/pdf/tex/'`
-                    if [ -f '$dirname/$texname' ]; then
+                    if [ -f "$dirname/$texname" ]; then
                         newname=`head -n 1 $dirname/$texname`
                         newname="${newname##*=}.pdf"
                         if [ $newname != '.pdf' ]; then
