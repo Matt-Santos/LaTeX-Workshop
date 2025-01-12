@@ -59,7 +59,7 @@ jobs:
                 root_file: |
                     resume/cv.tex
                     resume/resume.tex
-                # projects/projects.tex
+                    projects/projects.tex
                 work_in_root_file_dir: true
                 latexmk_shell_escape: true
                 latexmk_use_lualatex: true
