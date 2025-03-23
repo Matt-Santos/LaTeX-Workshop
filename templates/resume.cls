@@ -47,9 +47,9 @@
 
 % Universal Formating
 \setlength{\tabcolsep}{0in} % Eliminate indentation
-\pagenumbering{gobble} % Eliminate pagenumbers
 \raggedright
 \urlstyle{same}
+\pagenumbering{gobble} % Eliminate pagenumbers
 
 % Define Personal Header
 \newcommand{\header}{
@@ -63,7 +63,8 @@
 	\href{tel:+\telephone}{\faPhone~\phonenumber{\telephone}}
 	\else
 	\href{https://www.google.ca/maps/place/Milton,+ON/}{\faMapMarker~\location}
-	\fi}
+	\fi
+	\vspace{\baselineskip}}
 }
 
 % Add Header to Every Page
