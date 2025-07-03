@@ -31,6 +31,7 @@
 \JSONParseFromFile[externalize]{\RepoData}{repoList.json}
 
 \newcommand{\printRepos}[1]{
+	\begin{samepage}
 	\section{\uppercase{#1}}\vspace{0.5\baselineskip}
 	\foreach \x [count=\xi from 0] in {1,...,99}{
 		\IfEq*{\JSONParseExpandableValue{\RepoData}{[\xi].repositoryTopics[0].name}}{#1}{
@@ -44,6 +45,7 @@
 			\markdownInput{\JSONParseExpandableValue{\RepoData}{[\xi].name}/documents/README.md}\vspace{0.5\baselineskip}
 		}{} % false case
 	}
+	\end{samepage}
 }
 
 
