@@ -15,7 +15,11 @@
 \usepackage[compact,raggedright]{titlesec}
 \usepackage{enumitem}
 \usepackage{fontawesome}
-\usepackage{times}
+\ifdefined\directlua
+	\usepackage{newtxtext}
+\else
+	\usepackage{times}
+\fi
 \usepackage[country=US]{phonenumbers}
 \usepackage{iftex}
 %\usepackage{showframe}	 % Boundary Check
