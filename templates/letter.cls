@@ -4,7 +4,7 @@
 
 % Class Definition
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{../templates/letter}[2024/11/10 Letter LaTeX class]
+\ProvidesClass{templates/letter}[2024/11/10 Letter LaTeX class]
 
 % Packages
 \LoadClass[12pt]{article} % [10pt,12pt]
@@ -15,12 +15,17 @@
 \usepackage[raggedright]{titlesec}
 \usepackage{enumitem}
 \usepackage{fontawesome}
-\usepackage{times}
+\ifdefined\directlua
+	\usepackage{newtxtext}
+\else
+	\usepackage{times}
+\fi
 \usepackage[country=US]{phonenumbers}
 \usepackage{graphicx}
+\usepackage{csquotes}
 
 % Varriables
-\input{../templates/varriables.var}
+\input{templates/varriables.var}
 
 % PDF Configuration (Generic Entries)
 \hypersetup{
@@ -74,7 +79,7 @@
 \newcommand{\Signature}[1]{%
 	\raggedright{#1},\\
 	\vspace{4pt}
-	\hspace*{-0.4cm}\includegraphics[width=4.5cm]{../templates/signature.png}\\
+	\hspace*{-0.4cm}\includegraphics[width=4.5cm]{templates/signature.png}\\
 	%\vspace{2pt}
     Matthew Santos
 }

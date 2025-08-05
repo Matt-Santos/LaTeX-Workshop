@@ -4,7 +4,7 @@
 
 % Class Definition
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{../templates/resume}[2024/11/10 Resume LaTeX class]
+\ProvidesClass{templates/resume}[2024/11/10 Resume LaTeX class]
 
 % Packages
 \LoadClass[10pt]{article} % [10pt,12pt]
@@ -25,7 +25,7 @@
 %\usepackage{showframe}	 % Boundary Check
 
 % Varriables
-\input{../templates/varriables.var}
+\input{templates/varriables.var}
 
 % PDF Configuration (Generic Entries)
 \hypersetup{

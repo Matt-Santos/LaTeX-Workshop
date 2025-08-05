@@ -1,0 +1,20 @@
+% !TEX program = latexmk
+% !TEX options = -jobname=Publication_List -synctex=1 -interaction=nonstopmode -shell-escape -lualatex %DOC%
+
+%------------------------
+% Print Personal Bibliography
+% Author: Matthew Santos
+% Last Updated Dec 2025
+%------------------------
+
+\documentclass{templates/letter}
+\usepackage[backend=bibtex]{biblatex}
+
+\addbibresource{bibliography/publications.bib}
+
+\begin{document}
+\header
+\nocite{*}
+\printbibliography[title={Publications}]
+
+\end{document}

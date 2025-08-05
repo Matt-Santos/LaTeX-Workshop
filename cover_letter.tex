@@ -1,11 +1,14 @@
-%& -job-name=Matthew_Santos_Cover_Letter
-% Matthew Santos
-% Cover Letter Template
-% Last Updated Nov 2024
-%------------------------
-% (Compile with pdfLatex)
+% !TEX program = latexmk
+% !TEX options = -jobname=Cover_Letter_Example -synctex=1 -interaction=nonstopmode -shell-escape -lualatex %DOC%
 
-\documentclass{../templates/letter}
+%------------------------
+% Cover Letter
+% Author: Matthew Santos
+% Last Updated: August 2025
+%------------------------
+
+\documentclass{templates/letter}
+\usepackage{lipsum}
 \begin{document}
 \header
 \rule{\linewidth}{1pt}
@@ -18,28 +21,28 @@
 
 \CompanyInfo{Company Name}{1234 Main Street}{Toronto, ON}{L7L 5M4}{\today}
 
-Dear "Name",% Include name and title of hiring manager if known
+Dear Hiring Manager,% Include name and title of hiring manager if known
 
 % First Paragraph (who I am and my major skills)
 	% Name, profession, and years of experience.
 	% 1-2 of your top achievements (to stand out).
 	% The name of the firm and position being applied for.
 
-Paragraph A
+\lipsum[1][1-8]
 
 % Second Paragraph (detailed relavent experience)
 	% Brief overview of background related to the position
 	% Include skills/specialities/measureable impacts
 	% If able include references to keywords found in job description
 
-Paragraph B
+\lipsum[2][1-8]
 
-% Third Paragrah ()
+% Third Paragrah (specific/targeted examples)
 	% Mention why the position is desired
 	% Prove how you can do the job (problem solving, knowledge, teamwork)
 	% Outline Career plans 
 
-Paragraph C
+\lipsum[3][1-8]
 
 % Closing Paragraph (final comments)
 	% Mention anything that you couldn’t in the previous paragraphs.
@@ -47,7 +50,7 @@ Paragraph C
 	% Thank the hiring manager for their time. Good manners go a long way. 
 	% Finish the cover letter with a call to action.
 
-Paragraph D
+\lipsum[4][1-8]
 
 %Ending Sentence
 Thank you for your time and consideration.

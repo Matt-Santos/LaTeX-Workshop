@@ -1,11 +1,13 @@
-%& -job-name=Matthew_Santos_Projects
-% Matthew Santos
-% List of Public Projects on Github
-% Last Updated Nov 2024
-% (Compile with pdfLatex)
+% !TEX program = latexmk
+% !TEX options = -jobname=Matthew_Santos_Projects -synctex=1 -interaction=nonstopmode -shell-escape -lualatex %DOC%
+
+%------------------------
+% Github Project List
+% Author: Matthew Santos
+% Last Updated: August 2025
 %------------------------
 
-\documentclass{../templates/resume}
+\documentclass{templates/resume}
 \usepackage{jsonparse}
 \usepackage{pgffor}
 \usepackage{fontawesome}

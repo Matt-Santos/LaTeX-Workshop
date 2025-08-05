@@ -1,24 +1,29 @@
-%& -job-name=Journal_Example
-% Generic Journal IEEE
-% Last Updated Dec 2024
-% (Compile with pdflatex)
+% !TEX program = latexmk
+% !TEX options = -jobname=Journal_Example -synctex=1 -interaction=nonstopmode -shell-escape -pdflatex %DOC%
+
+%------------------------
+% Journal IEEE
+% Author: Matthew Santos
+% Last Updated: August 2025
 %------------------------
 
-\documentclass[journal]{../templates/IEEEtran}
+\documentclass[journal]{templates/IEEEtran}
 
 \IEEEoverridecommandlockouts
 \usepackage{cite}
 \usepackage[pdftex]{graphicx}
-\graphicspath{{Images/}}
-\DeclareGraphicsExtensions{.pdf,.png}
 \usepackage{amsmath}
-\interdisplaylinepenalty=2500
-\usepackage{algorithmic}
 \usepackage{array}
 \usepackage[caption=false,font=footnotesize]{subfig}
 \usepackage{stfloats}
 \usepackage{url}
 \usepackage{comment}
+\usepackage{lipsum}
+
+% Personal Modifications
+\graphicspath{{Images/}}
+\DeclareGraphicsExtensions{.pdf,.png}
+\interdisplaylinepenalty=2500
 
 % Journal Specific Settings
 \renewcommand\IEEEkeywordsname{Index Terms}
@@ -28,36 +33,28 @@
 
 \title{Journal Title}
 
-% Author Templates
-\begin{comment}
-\author{\IEEEauthorblockN{Matthew Santos}
-\IEEEauthorblockA{Department of Electrical and\\Computer Engineering\\
-	University of Windsor\\
-	Windsor, Ontario N9B 3P4\\
-	Email: ABC@uwindsor.ca}
+\author{
+	Matthew Santos~\IEEEmembership{Member, IEEE}
+	\thanks{M. Santos is with Electrical \& Computer Engineering Department, University of Windsor, Windsor, Canada}
 }
-		
-\IEEEauthorblockA{Department of Electrical and Computer Engineering\\University of Windsor, Windsor, Ontario N9B 3P4\\ Email: ABC@uwindsor.ca, ABC@uwindsor.ca, ABC@uwindsor.ca}
-
-\author{\IEEEauthorblockN{Matthew Santos,~\IEEEmembership{Student Member,~IEEE}, ContributerA,~\IEEEmembership{Student Member,~IEEE}, \\and ContributerB,~\IEEEmembership{Senior Member,~IEEE}}}
-
-\end{comment}
 
 \maketitle
 
-\begin{abstract}
-Abstract generally limited to 500 words.
+\begin{abstract} % Generally limited to 500 words
+	\lipsum[1]
 \end{abstract}
 
 \begin{IEEEkeywords} % Use only official keywords
-Electrocardiography, ...
+	Electrocardiography, TermB, TermC
 \end{IEEEkeywords}
 
 \section{Introduction} 
 
+	\lipsum[2]
+
 \section{First Section}
 
-Even in the absence ... Figure~\ref{myfig}
+	\lipsum[3] Figure~\ref{myfig}
 
 \begin{figure}[!b] % optionally use [!t] pr [!h]
 	\centering
@@ -89,6 +86,19 @@ While...
 \bibliography{bibliography}
 \end{document}
 
+% Author Templates
+\begin{comment}
+	\author{\IEEEauthorblockN{Matthew Santos}
+	\IEEEauthorblockA{Department of Electrical and\\Computer Engineering\\
+		University of Windsor\\
+		Windsor, Ontario N9B 3P4\\
+		Email: ABC@uwindsor.ca}
+	}
+			
+	\IEEEauthorblockA{Department of Electrical and Computer Engineering\\University of Windsor, Windsor, Ontario N9B 3P4\\ Email: ABC@uwindsor.ca, ABC@uwindsor.ca, ABC@uwindsor.ca}
+	
+	\author{\IEEEauthorblockN{Matthew Santos,~\IEEEmembership{Student Member,~IEEE}, ContributerA,~\IEEEmembership{Student Member,~IEEE}, \\and ContributerB,~\IEEEmembership{Senior Member,~IEEE}}}
+	\end{comment}
 
 % Common Templates
 \begin{comment}
