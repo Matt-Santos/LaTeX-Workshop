@@ -84,8 +84,8 @@ jobs:
             uses: softprops/action-gh-release@v2.1.0
             with:
                 files: |
-                    **/*.pdf
-                    **/*.sig
+                    *.pdf
+                    *.sig
                 name: latest
                 tag_name: latest
                 make_latest: true
@@ -95,8 +95,8 @@ jobs:
             uses: softprops/action-gh-release@v2.0.9
             with:
                 files: |
-                    **/*.pdf
-                    **/*.sig
+                    *.pdf
+                    *.sig
                 generate_release_notes: true
                 make_latest: true
                 body: Personal Documents Compiled via LaTeX
