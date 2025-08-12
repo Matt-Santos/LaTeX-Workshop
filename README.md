@@ -1,14 +1,16 @@
 # LaTeX Workshop
 
-LaTeX is a powerful typesetting system that is used for producing professional technical documents. This is my workspace for experimenting and scripting with said system to develop exceptional document styles that can be readily applied to a variety of reports, presentations, and articles. All custom LaTeX styles are consolidated within the templates directory to mitigate relocating files when switching between document formats. It includes an automated workflow that compiles, digitally signs, and then publishes all .tex files present throughout root level subdirectories. Compilation is performed via [latexmk](https://ctan.org/pkg/latexmk) which automatically adjusts the command sequence to accomodate for supplimental LaTeX modules such as glossaries and bibliographys. In the event manual command setup is required, it is recommended to begin with lualatex or pdflatex and adjust as nessesary.
+LaTeX is a typesetting system used for producing professional technical documents. This is my workspace for experimenting and scripting with said system to develop document styles that can be applied to a variety of reports, presentations, and articles. All custom LaTeX styles are consolidated within a templates directory to mitigate relocating files when switching between document formats. The repository includes an automated workflow that compiles, digitally signs, then publishes all .tex files present at the root level. Compilation is performed via [latexmk](https://ctan.org/pkg/latexmk) which automatically adjusts the command sequence to accomodate for supplimental LaTeX modules such as glossaries and bibliographies. In the event manual compliation is required, it is recommended to begin with lualatex and add the -shell-escape option as nessesary. Special thanks to [Michael Shell](https://www.michaelshell.org) and associates for their contributions to the IEEEtran LaTeX class which serves as the foundation for several of the works presented here.
 
 # Included Templates
 
-- University Thesis
 - Formal Letter
 - Professional Resume
+- University Thesis
 - Technical Report
 - Journal Article
+- Conference Paper
+- Bibliography
 
 # Personal Documents
 
