@@ -43,16 +43,18 @@ jobs:
             env:
                 GH_TOKEN: ${{ secrets.WEBSITEPAT }}
                 OWNER: ${{ github.repository_owner }}
+
           - name: Compile Latex Documents
             uses: xu-cheng/texlive-action@v3
             with:
                 os: debian
                 run: |
-                    find . -type f -iname ".tex" | while read fname; do
-                        program=`sed '1q;d' $fname | sed -n 's/% !TEX program = //p'`
-                        args=`sed '2q;d' $fname | sed -n 's/% !TEX options = //p' | sed s/%DOC%//`
-                        $program $args $fname
+                    find . -type f -iname ".tex" | while read fname; do \
+                        program=`sed '1q;d' $fname | sed -n 's/% !TEX program = //p'` \
+                        args=`sed '2q;d' $fname | sed -n 's/% !TEX options = //p' | sed s/%DOC%//` \
+                        $program $args $fname \
                     done
+
           - name: Import GPG Key
             uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5
             with:
