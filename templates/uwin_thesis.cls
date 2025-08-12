@@ -38,8 +38,8 @@
 \usepackage[left=1.5in,top=1in,right=1in,right=1in]{geometry}
 \usepackage[hidelinks,linktoc=all]{hyperref}
 \usepackage[sort=use,acronym,toc,symbols,section=chapter,automake=immediate]{glossaries-extra}
-
 \usepackage{lipsum}
+%\usepackage{showframe} %Used to verify positioning
 
 % Main Definitions
 \def\Author#1{\def\@Author{#1}}
@@ -50,41 +50,14 @@
 \def\Abstract#1{\def\@Abstract{#1}}
 \def\Dedication#1{\def\@Dedication{#1}}
 \def\Acknowledgments#1{\def\@Acknowledgments{#1}}
-
-%Keywords
-
-%Test Region
+\def\PDFKeywords#1{\def\@PDFKeywords{#1}}
 \def\ApprovalA#1#2#3{\def\@ApprovalAName{#1} \def\@ApprovalARole{#2} \def\@ApprovalADepartment{#3}}
 \def\ApprovalB#1#2#3{\def\@ApprovalBName{#1} \def\@ApprovalBRole{#2} \def\@ApprovalBDepartment{#3}}
 \def\ApprovalC#1#2#3{\def\@ApprovalCName{#1} \def\@ApprovalCRole{#2} \def\@ApprovalCDepartment{#3}}
 \def\ApprovalD#1#2#3{\def\@ApprovalDName{#1} \def\@ApprovalDRole{#2} \def\@ApprovalDDepartment{#3}}
 \def\ApprovalE#1#2#3{\def\@ApprovalEName{#1} \def\@ApprovalERole{#2} \def\@ApprovalEDepartment{#3}}
-
-
-\newcommand{\ThesisApprovals}{
-    \ifx\@ApprovalAName\undefined\else%
-        \rule{0.7\textwidth}{0.4pt}\\
-        \@ApprovalAName
-        \ifx\@ApprovalARole\empty\else%
-            , \@ApprovalARole
-        \fi
-        \\
-        \@ApprovalADepartment\\
-        \vfill%\vspace{1.5cm}
-    \fi
-}
-
-%Test Inputs
-\ApprovalA{J. Doe}{}{Department of Electrical and Computer Engineering}
-\ApprovalB{B. Doe}{Cook}{Department of Electrical and Computer Engineering}
-\ApprovalC{C. Doe}{Scientist}{Department of Electrical and Computer Engineering}
-
-
-%Approval
-% Name,Role, Department
-
-
-
+\def\Appendices#1{\def\@Appendices{#1}}
+\def\VitaAuctoris#1{\def\@VitaAuctoris{#1}}
 
 % Default Values
 \Author{Author Full Name}
@@ -92,6 +65,7 @@
 \DefenceYear{Year}
 \DefenceMonth{Month}
 \DefenceDay{Day}
+\PDFKeywords{}
 
 % Class Commands (Internal Use)
 \newcommand{\ThesisAuthor}{\@Author}
@@ -102,6 +76,41 @@
 \newcommand{\ThesisAbstract}{\@Abstract}
 \newcommand{\ThesisDedication}{\@Dedication}
 \newcommand{\ThesisAcknowledgments}{\@Acknowledgments}
+\newcommand{\ThesisPDFKeywords}{\@PDFKeywords}
+\newcommand{\ThesisApproval}{ %Note: this could use a loop implementation
+        \ifx\@ApprovalAName\undefined\else%
+            \rule{0.7\textwidth}{0.4pt}\\\@ApprovalAName
+            \ifx\@ApprovalARole\empty\else, \@ApprovalARole\fi
+            \\\@ApprovalADepartment\\\vfill
+        \fi
+        \ifx\@ApprovalBName\undefined\else%
+            \rule{0.7\textwidth}{0.4pt}\\\@ApprovalBName
+            \ifx\@ApprovalBRole\empty\else, \@ApprovalBRole\fi
+            \\\@ApprovalBDepartment\\\vfill
+        \fi
+        \ifx\@ApprovalCName\undefined\else%
+            \rule{0.7\textwidth}{0.4pt}\\\@ApprovalCName
+            \ifx\@ApprovalCRole\empty\else, \@ApprovalCRole\fi
+            \\\@ApprovalCDepartment\\\vfill
+        \fi
+        \ifx\@ApprovalDName\undefined\else%
+            \rule{0.7\textwidth}{0.4pt}\\\@ApprovalDName
+            \ifx\@ApprovalDRole\empty\else, \@ApprovalDRole\fi
+            \\\@ApprovalDDepartment\\\vfill
+        \fi
+        \ifx\@ApprovalEName\undefined\else%
+            \rule{0.7\textwidth}{0.4pt}\\\@ApprovalEName
+            \ifx\@ApprovalERole\empty\else, \@ApprovalERole\fi
+            \\\@ApprovalEDepartment\\\vfill
+        \fi
+}
+\newcommand{\ThesisAppendices}{\@Appendices}
+\newcommand{\AppendixSection}[3]{
+    \includepdf[pages=1-,pagecommand={\chapter*{Appendix #1: #2}\label{Appendix.#1}
+        \addcontentsline{toc}{section}{Appendix #1: #2}}
+        ,width=\textwidth,height=0.9\textheight,offset=0.65cm -0.65cm]{#3}
+}
+\newcommand{\ThesisVitaAuctoris}{\@VitaAuctoris}
 
 % Primary Formatting Changes
 \linespread{1.241}  %1.241 for Standard 1.5x Spacing, 1.655 for Double Spacing
@@ -133,8 +142,8 @@
 	pdfauthor={\ThesisAuthor{}},
 	pdftitle={\ThesisTitle{}},
 	pdfsubject={MASc Thesis},
-	pdfkeywords={Keywords go here},
-	pdfcreator={PdfLaTeX}
+	pdfkeywords={\ThesisPDFKeywords{}},
+	pdfcreator={LuaLaTeX}
 }
 
 % Front Matter Pages
@@ -181,11 +190,7 @@
                 \vspace{1cm}
                 APPROVED BY:\\
                 \vfill
-                \ThesisApprovalA
-                \ThesisApprovalB
-                \ThesisApprovalC
-                \ThesisApprovalD
-                \ThesisApprovalE
+                \ThesisApproval
                 {\hfill \ThesisDefenceMonth~\ThesisDefenceDay, \ThesisDefenceYear}
             \end{center}
         \end{large}
@@ -263,32 +268,25 @@
 \newcommand\EndMatter{
 
     %Appendices
-    \appendix
-    \addappheadtotoc
-    \chapter*{Appendices}
-    \includepdf[pages=1,pagecommand={
-        \chapter*{Appendix A: Appendix Title}\label{Appendix.A}
-        \addcontentsline{toc}{section}{Appendix A: Appendix Title}}
-    ,width=\textwidth,offset=0.5cm -0.5cm]{Images/tmp.pdf}
-    \includepdf[pages=2-,pagecommand={}
-    ,width=\textwidth,offset=0.5cm 0.5cm]{Images/tmp.pdf}
-    \clearpage
+    \ifx\@Appendices\undefined\else
+        \appendix
+        \addappheadtotoc
+        \chapter*{Appendices}
+        \ThesisAppendices{}
+        \clearpage
+    \fi
 
     %References
     %\nocite{*} %use with care
     \bibliographystyle{IEEEtran}
     \bibliography{bibliography}
     \addcontentsline{toc}{chapter}{References}
-    \clearpage
-
+    
     %Vita Auctoris
-    \chapter*{Vita Auctoris}
-    \addcontentsline{toc}{chapter}{Vita Auctoris}
-    \begin{tabular}{ll}
-        \textbf{NAME}\hspace{4cm} & Author Full Name\\[0.5cm] 
-        \textbf{PLACE OF BIRTH} & Toronto, ON, Canada\\[0.5cm]
-        \textbf{YEAR OF BIRTH} & XXXX\\[0.5cm] 
-        \textbf{EDUCATION}
-        ...
-    \end{tabular}
+    \ifx\@VitaAuctoris\undefined\else
+        \clearpage
+        \chapter*{Vita Auctoris}
+        \addcontentsline{toc}{chapter}{Vita Auctoris}
+        \ThesisVitaAuctoris
+    \fi
 }
