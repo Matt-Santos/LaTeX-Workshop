@@ -1,16 +1,75 @@
-%& -job-name=Uwin_Thesis_Template
-% Personal Uwindsor Thesis Template
-% Last Updated Nov 2025
-% (Compile with pdflatex)
+% !TEX program = latexmk
+% !TEX options = -jobname=Uwin_Thesis_Template -synctex=1 -interaction=nonstopmode -shell-escape -lualatex %DOC%
+
+%------------------------
+% Uwindsor Thesis Template
+% Author: Matthew Santos
+% Last Updated: August 2025
 %------------------------
 
-\documentclass[12pt]{report}
+\documentclass{templates/uwin_thesis}
 
-\include{Global_Definitions}
+% Parameters
+\Author{Author Full Name}
+\Title{Thesis Title}
+\DefenceYear{Year}
+\DefenceMonth{Month}
+\DefenceDay{Day}
+
+% Test Parameters (Remove later)
+\Author{Matthew Santos}
+\Title{The amazing thesis title}
+\DefenceYear{2015}
+\DefenceMonth{July}
+\DefenceDay{14}
+
+% Abbreviations (reference in text via \glsxtrshort{label} )
+\newacronym{ecg}{ECG}{electrocardiogram}
+
+% Symbols (reference in text via \gls{label} )
+\glsxtrnewsymbol[description={Action Potential}]{Vap}{$V_{AP}$}
+
+% Glossary (reference in text via \gls{label} )
+\newglossaryentry{SA_node}{name={sinoatrial node},description={stimulates heart contraction}}
+
+% Abstract (Limit of 500 Words)
+\Abstract{
+    \lipsum[1-2]
+}
+
+% Dedication (Optional)
+\Dedication{
+    {\itshape\bfseries To My Family}\\
+        for everything
+}
+
+% Acknowledgements (Optional)
+\Acknowledgments{
+    To all those who supported my research and ...
+}
+
+% Chapter 1 Example (Move to Independant File)
+\begin{filecontents*}{Chapter_1.tex}
+    \chapter{Introduction}
+        \lipsum[1]
+    \section{Thesis Contributions}
+        \lipsum[1]
+    \section{Thesis Outline}
+        \lipsum[1]
+        \hyperlink{chapter.1}{Chapter~1} lists \gls{SA_node}
+        \hyperlink{chapter.1}{Chapter~1} provides \gls{Vap}
+        \hyperlink{chapter.1}{Chapter~1} presents \glsxtrshort{ecg}
+    \section{Research Motivation}
+        \lipsum[1]
+\end{filecontents*}
+
+
+% Main Includes (comment out lines for selective compiling)
+%----------------------------------------------------------
 \begin{document}
-\include{Front_Matter}
-\include{Chapter_1}
-\include{Chapter_2}
-% add more chapters as needed
-\include{End_Matter}
+    \FrontMatter
+    \include{Chapter_1}
+        % add more chapters as needed
+    %\EndMatter
 \end{document}
+

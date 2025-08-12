@@ -8,7 +8,7 @@
 %------------------------
 
 \documentclass{templates/resume}
-\usepackage{jsonparse}
+\usepackage{luacode}
 \usepackage{pgffor}
 \usepackage{fontawesome}
 \usepackage{xstring}
@@ -30,8 +30,25 @@
 		codeSpan = {{\tt #1}}, 
 	}
 }
-\JSONParseFromFile[externalize]{\RepoData}{repoList.json}
 
+% Project List Parsing Code
+\begin{luacode}
+	function read(file)
+		local handler = io.open(file, "rb")
+		local content = handler:read("*all")
+		handler:close()
+		return content
+	end
+	JSON = (loadfile "JSON.lua")()
+	table = JSON:decode(read("repoList.json"))
+\end{luacode}
+
+\directlua{tex.print(table[0]['repositoryTopics'][0]['name'])}
+\directlua{tex.print(table['recipe']['title'])}
+
+
+
+% Project List Formating Macro
 \newcommand{\printRepos}[1]{
 	\begin{samepage}
 	\section{\uppercase{#1}}\vspace{0.5\baselineskip}
@@ -51,7 +68,8 @@
 }
 
 
-
+% Main
+%--------------------------------------
 \begin{document}
 	\header%\vfill
 	

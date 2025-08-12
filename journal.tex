@@ -49,41 +49,37 @@
 \end{IEEEkeywords}
 
 \section{Introduction} 
-
 	\lipsum[2]
-
 \section{First Section}
-
-	\lipsum[3] Figure~\ref{myfig}
-
-\begin{figure}[!b] % optionally use [!t] pr [!h]
-	\centering
-	\includegraphics[width=2.5in,draft]{temp}
-	\caption{Example figure Caption}
-	\label{myfig}
-\end{figure}
-
-Equation (\ref{IA_TF}) describes the ...
-
-\begin{equation}
-V_{out} = \frac{R_3}{R_2}\left(1+2\frac{R_1}{R_G}\right)(V_{e1}-V_{e2})+V_g
-\label{IA_TF}
-\end{equation}
-
-\newpage % force pagebreaks where needed
-
-\subsection{Example Subsections}
-
+	\lipsum[3] 
+	Figure~\ref{myfig}
+	\begin{figure}[!b] % optionally use [!t] pr [!h]
+		\centering
+		\includegraphics[width=2.5in,draft]{example-image-a}
+		\caption{Example figure Caption}
+		\label{myfig}
+	\end{figure}
+	Equation (\ref{IA_TF})
+	\begin{equation}
+		V_{out} = \frac{R_3}{R_2}\left(1+2\frac{R_1}{R_G}\right)(V_{e1}-V_{e2})+V_g
+		\label{IA_TF}
+	\end{equation}
+	\newpage % force pagebreaks where needed
+	\subsection{Example Subsections}
+		\lipsum[4]
+\section{Second Section}
+	\lipsum[5]
+\section{Third Section}
+	\lipsum[6]
 \section{Conclusion} %Remember: Self Contained strong conclusion
-
-While...
+	\lipsum[7]
 
 % References Section
 \clearpage
 \IEEEtriggeratref{4} %Set to even out columns
 \nocite{*} %Remember to remove and check before submiting
-\bibliographystyle{IEEEtran}
-\bibliography{bibliography}
+\bibliographystyle{templates/IEEEtran}
+\bibliography{bibliography/Books.bib}
 \end{document}
 
 % Author Templates
@@ -98,7 +94,7 @@ While...
 	\IEEEauthorblockA{Department of Electrical and Computer Engineering\\University of Windsor, Windsor, Ontario N9B 3P4\\ Email: ABC@uwindsor.ca, ABC@uwindsor.ca, ABC@uwindsor.ca}
 	
 	\author{\IEEEauthorblockN{Matthew Santos,~\IEEEmembership{Student Member,~IEEE}, ContributerA,~\IEEEmembership{Student Member,~IEEE}, \\and ContributerB,~\IEEEmembership{Senior Member,~IEEE}}}
-	\end{comment}
+\end{comment}
 
 % Common Templates
 \begin{comment}
