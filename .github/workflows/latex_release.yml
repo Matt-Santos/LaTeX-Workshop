@@ -43,7 +43,11 @@ jobs:
             env:
                 GH_TOKEN: ${{ secrets.WEBSITEPAT }}
                 OWNER: ${{ github.repository_owner }}
-
+          - uses: actions/upload-artifact@v4
+            with:
+                name: project_artifact
+                path: |
+                    projects/
           - name: Compile Latex Documents
             uses: xu-cheng/texlive-action@v3
             with:
