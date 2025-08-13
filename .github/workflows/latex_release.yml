@@ -49,8 +49,14 @@ jobs:
             with:
                 os: debian
                 run: |
+                    find . -type -iname ".tex" | while read fname; do
                     program=`sed '1q;d' "resume.tex" | sed -n 's/% !TEX program = //p'`
+                    args=`sed '2q;d' $fname | sed -n 's/% !TEX options = //p' | sed s/%DOC%//`
                     echo "$program"
+                    echo "$args"
+                    echo "$fname"
+                    done
+
                 #find . -type f -iname ".tex" | while read fname; do
                 #        program=`sed '1q;d' $fname | sed -n 's/% !TEX program = //p'`
                 #        args=`sed '2q;d' $fname | sed -n 's/% !TEX options = //p' | sed s/%DOC%//`
