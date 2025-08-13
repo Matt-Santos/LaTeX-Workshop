@@ -49,17 +49,12 @@ jobs:
             with:
                 os: debian
                 run: |
-                    ls -la
                     find . -type f -iname "*.tex" | while read fname; do \
                         program=$(sed "1q;d" "$fname" | sed -n "s/% !TEX program = //p"); \
                         args=$(sed "2q;d" "$fname" | sed -n "s/% !TEX options = //p" | sed "s/%DOC%//"); \
-                        echo "$program" "$args" "$fname"; \
+                        echo "Compiling $fname using $program with $args"; \
+                        eval "$program $args $fname"; \
                     done
-                #find . -type f -iname ".tex" | while read fname; do
-                #        program=`sed '1q;d' $fname | sed -n 's/% !TEX program = //p'`
-                #        args=`sed '2q;d' $fname | sed -n 's/% !TEX options = //p' | sed s/%DOC%//`
-                #        $program $args $fname
-                #    done
           - name: Import GPG Key
             uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5
             with:
