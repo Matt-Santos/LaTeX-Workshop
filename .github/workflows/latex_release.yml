@@ -49,11 +49,12 @@ jobs:
             with:
                 os: debian
                 run: |
-                    'find . -type f -iname "*.tex" | while read fname; do \
+                    ls -la
+                    find . -type f -iname "*.tex" | while read fname; do \
                         program=$(sed "1q;d" "$fname" | sed -n "s/% !TEX program = //p"); \
                         args=$(sed "2q;d" "$fname" | sed -n "s/% !TEX options = //p" | sed "s/%DOC%//"); \
                         echo "$program" "$args" "$fname"; \
-                    done'
+                    done
                 #find . -type f -iname ".tex" | while read fname; do
                 #        program=`sed '1q;d' $fname | sed -n 's/% !TEX program = //p'`
                 #        args=`sed '2q;d' $fname | sed -n 's/% !TEX options = //p' | sed s/%DOC%//`
