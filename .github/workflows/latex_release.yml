@@ -43,6 +43,10 @@ jobs:
             env:
                 GH_TOKEN: ${{ secrets.WEBSITEPAT }}
                 OWNER: ${{ github.repository_owner }}
+          - name: Decrypt Signature Image
+            run: |
+                gpg -d -o templates/signature.tar templates/signature.tar.gpg
+                tar -xvf templates/signature.tar --directory templates
           - name: Compile Latex Documents
             uses: xu-cheng/texlive-action@v3
             with:
@@ -60,10 +64,6 @@ jobs:
                 gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
                 passphrase: ${{ secrets.PASSPHRASE }}
                 trust_level: 5
-          - name: Decrypt Signature Image
-            run: |
-                gpg -d -o templates/signature.tar templates/signature.tar.gpg
-                tar -xvf templates/signature.tar --directory templates
           - name: Digitally Sign PDF Documents
             env:
                 secret_passphrase: ${{ secrets.PASSPHRASE }}
