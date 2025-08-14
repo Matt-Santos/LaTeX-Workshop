@@ -13,6 +13,7 @@
 \usepackage[english]{babel} % Language Typography
 \usepackage[hidelinks]{hyperref}
 \usepackage[compact,raggedright]{titlesec}
+\usepackage{markdown}
 \usepackage{enumitem}
 \usepackage{fontawesome}
 \ifdefined\directlua
@@ -80,7 +81,7 @@
 % Line Entry Command
 % Args={Company,Location,Job Title,Date,Subheading,Items}
 \newcommand{\resumeEntry}[6]{
-	\begin{itemize}[leftmargin=0.0in, label={},nosep]
+	\begin{itemize}[leftmargin=0.0in, label={ },nosep]
 		\item
 		\begin{tabular*}{1.0\textwidth}{l@{\extracolsep{\fill}}r}
 			\textbf{#1} $|$ #2, \emph{#3} & \textbf{#4}
